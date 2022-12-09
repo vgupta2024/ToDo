@@ -1,0 +1,6 @@
+# Dependency directories
+node_modules/
+
+# Specific files
+.DS_Store
+package-lock.json
