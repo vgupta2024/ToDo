@@ -1,10 +1,16 @@
-<%- include('partials/header', {title:"Tiger Helper"}) -%>
+<%- include('partials/header', {title:"Tiger Helper Create Category"}) -%>
 
-<img src="<%=data.opponentPhoto%>" height=150 />
-<h2><%=data.opponentName%> threw <%=data.opponentThrow%></h2>
-<h2>You threw <%=data.playerThrow%></h2>
+<h2>Create a New Opponent!</h2>
 
-<h1>You <%=data.outcome%>!</h1>
+<form action="/opponentCreate" method="POST">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="opponentName" value=""><br>
+  <label for="photo">Link to Photo:</label>
+  <input type="text" id="photo" name="opponentPhoto" value=""><br>
+  <br><br>
+  <input type="submit" value="Create a new opponent!">
+
+</form>
 
 <%- include('partials/footer') -%>
 
