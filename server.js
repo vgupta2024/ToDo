@@ -22,7 +22,7 @@ app.get('/', function(request, response) {
   response.render("index");
 });
 
-app.get('/play', function(request, response) {
+app.get('/Category', function(request, response) {
     let categories = JSON.parse(fs.readFileSync('data/opponents.json'));
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
@@ -90,7 +90,7 @@ app.get('/scores', function(request, response) {
   });
 });
 
-app.get('/opponent/:opponentName', function(request, response) {
+app.get('/Category/:CategorySpecific', function(request, response) {
   let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
 
   // using dynamic routes to specify resource request information
@@ -115,13 +115,13 @@ app.get('/opponent/:opponentName', function(request, response) {
   }
 });
 
-app.get('/opponentCreate', function(request, response) {
+app.get('/CategoryCreate', function(request, response) {
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("opponentCreate");
+    response.render("CategoryCreate");
 });
 
-app.post('/opponentCreate', function(request, response) {
+app.post('/CategoryCreate', function(request, response) {
     let opponentName = request.body.opponentName;
     let opponentPhoto = request.body.opponentPhoto;
     if(opponentName&&opponentPhoto){
