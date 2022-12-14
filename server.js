@@ -23,49 +23,37 @@ app.get('/', function(request, response) {
 });
 
 app.get('/play', function(request, response) {
-    let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
+    let categories = JSON.parse(fs.readFileSync('data/opponents.json'));
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("play", {
-      data: opponents
+    response.render("categories", {
+      data: categories
     });
 });
 
 app.get('/results', function(request, response) {
-    let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
+    let categories = JSON.parse(fs.readFileSync('data/opponents.json'));
 
     //accessing URL query string information from the request object
     let opponent = request.query.opponent;
     let playerThrow = request.query.throw;
 
     if(opponents[opponent]){
-      let opponentThrowChoices=["Paper", "Rock", "Scissors"];
-      let results={};
+      let categories = JSON.parse(fs.readFileSync('data/opponents.json'));
 
-      results["playerThrow"]=playerThrow;
-      results["opponentName"]=opponent;
-      results["opponentPhoto"]=opponents[opponent].photo;
-      results["opponentThrow"] = opponentThrowChoices[Math.floor(Math.random() * 3)];
+      //accessing URL query string information from the request object
+      let categoryCreate = request.query.categoryCreate;
+      let activityCreate = request.query.activityCreate;
+      if(categories[categoryCreate]){
+        let activities={};
 
-      if(results["playerThrow"]===results["opponentThrow"]){
-        results["outcome"] = "tie";
-      }else if(results["playerThrow"]==="Paper"){
-        if(results["opponentThrow"]=="Scissors") results["outcome"] = "lose";
-        else results["outcome"] = "win";
-      }else if(results["playerThrow"]==="Scissors"){
-        if(results["opponentThrow"]=="Rock") results["outcome"] = "lose";
-        else results["outcome"] = "win";
-      }else{
-        if(results["opponentThrow"]=="Paper") results["outcome"] = "lose";
-        else results["outcome"] = "win";
-      }
+      activities["Category"]= categoryCreate;
+      activities["activity"]= activityCreate;
 
-      if(results["outcome"]=="lose") opponents[opponent]["win"]++;
-      else if(results["outcome"]=="win") opponents[opponent]["lose"]++;
-      else opponents[opponent]["tie"]++;
+      categories[categoryCreate] = activities;
 
       //update opponents.json to permanently remember results
-      fs.writeFileSync('data/opponents.json', JSON.stringify(opponents));
+      fs.writeFileSync('data/opponents.json', JSON.stringify(activities));
 
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
