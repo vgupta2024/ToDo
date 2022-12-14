@@ -32,13 +32,6 @@ app.get('/Category', function(request, response) {
 });
 
 app.get('/results', function(request, response) {
-    let categories = JSON.parse(fs.readFileSync('data/opponents.json'));
-
-    //accessing URL query string information from the request object
-    let opponent = request.query.opponent;
-    let playerThrow = request.query.throw;
-
-    if(opponents[opponent]){
       let categories = JSON.parse(fs.readFileSync('data/opponents.json'));
 
       //accessing URL query string information from the request object
