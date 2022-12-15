@@ -26,7 +26,7 @@ app.get('/Category', function(request, response) {
     let categories = JSON.parse(fs.readFileSync('data/opponents.json'));
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("categories", {
+    response.render("Category", {
       data: categories
     });
 });
