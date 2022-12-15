@@ -65,40 +65,18 @@ app.get('/results', function(request, response) {
     }
 });
 
-app.get('/scores', function(request, response) {
-  let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
-  let opponentArray=[];
 
-  //create an array to use sort, and dynamically generate win percent
-  for(name in opponents){
-    opponents[name].win_percent = (opponents[name].win/parseFloat(opponents[name].win+opponents[name].lose+opponents[name].tie) * 100).toFixed(2);
-    if(opponents[name].win_percent=="NaN") opponents[name].win_percent=0;
-    opponentArray.push(opponents[name])
-  }
-  opponentArray.sort(function(a, b){
-    return parseFloat(b.win_percent)-parseFloat(a.win_percent);
-  })
-
-  response.status(200);
-  response.setHeader('Content-Type', 'text/html')
-  response.render("scores",{
-    opponents: opponentArray
-  });
-});
-
-app.get('/Category/:CategorySpecific', function(request, response) {
+app.get('/Category/specific/:CategorySpecific', function(request, response) {
   let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
 
   // using dynamic routes to specify resource request information
   let opponentName = request.params.opponentName;
-
+  console.log('hi');
   if(opponents[opponentName]){
-    opponents[opponentName].win_percent = (opponents[opponentName].win/parseFloat(opponents[opponentName].win+opponents[opponentName].lose+opponents[opponentName].tie) * 100).toFixed(2);
-    if(opponents[opponentName].win_percent=="NaN") opponents[opponentName].win_percent=0;
-
+    console.log('hi');
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("opponentDetails",{
+    response.render("CategorySpecific",{
       opponent: opponents[opponentName]
     });
 
@@ -131,10 +109,8 @@ app.post('/CategoryCreate', function(request, response) {
       }
       opponents[opponentName] = newOpponent;
       fs.writeFileSync('data/opponents.json', JSON.stringify(opponents));
-
-      response.status(200);
-      response.setHeader('Content-Type', 'text/html')
-      response.redirect("/opponent/"+opponentName);
+      response.redirect("/Category/specific/"+opponentName);
+      console.log('hi');
     }else{
       response.status(400);
       response.setHeader('Content-Type', 'text/html')
