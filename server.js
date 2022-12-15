@@ -2,6 +2,8 @@
 const express = require('express');
 const fs = require('fs');
 const ejs = require('ejs');
+const { JsonCalendar } = require('json-calendar')
+const calendar = new JsonCalendar()
 
 //..............Create an Express server object..................//
 const app = express();
