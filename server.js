@@ -22,14 +22,7 @@ app.get('/', function(request, response) {
   response.render("index");
 });
 
-app.get('/Category', function(request, response) {
-    let categories = JSON.parse(fs.readFileSync('data/opponents.json'));
-    response.status(200);
-    response.setHeader('Content-Type', 'text/html')
-    response.render("Category", {
-      data: categories
-    });
-});
+
 
 app.get('/results', function(request, response) {
 
@@ -68,10 +61,10 @@ app.get('/Category/specific/:CategorySpecific', function(request, response) {
   let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
 
   // using dynamic routes to specify resource request information
-  let opponentName = request.params.opponentName;
-  console.log('hi');
+  let opponentName = request.params.CategorySpecific;
+  console.log(opponentName);
   if(opponents[opponentName]){
-    console.log('hi');
+    console.log("h");
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("CategorySpecific",{
@@ -85,12 +78,6 @@ app.get('/Category/specific/:CategorySpecific', function(request, response) {
       "errorCode":"404"
     });
   }
-});
-
-app.get('/CategoryCreate', function(request, response) {
-    response.status(200);
-    response.setHeader('Content-Type', 'text/html')
-    response.render("CategoryCreate");
 });
 
 app.post('/CategoryCreate', function(request, response) {
@@ -108,15 +95,32 @@ app.post('/CategoryCreate', function(request, response) {
       opponents[opponentName] = newOpponent;
       fs.writeFileSync('data/opponents.json', JSON.stringify(opponents));
       response.redirect("/Category/specific/"+opponentName);
-      console.log('hi');
     }else{
+      console.log('ERROR');
       response.status(400);
       response.setHeader('Content-Type', 'text/html')
       response.render("error", {
         "errorCode":"400"
       });
     }
+      console.log(JSON.parse(fs.readFileSync('data/opponents.json')));
 });
+app.get('/Category', function(request, response) {
+    let categories = JSON.parse(fs.readFileSync('data/opponents.json'));
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("Category", {
+      data: categories
+    });
+});
+
+app.get('/CategoryCreate', function(request, response) {
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("CategoryCreate");
+});
+
+
 
 // Because routes/middleware are applied in order,
 // this will act as a default error route in case of
