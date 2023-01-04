@@ -28,7 +28,7 @@ app.get('/', function(request, response) {
 
 app.get('/results', function(request, response) {
 
-      let categories = JSON.parse(fs.readFileSync('data/opponents.json'));
+      let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
 
       //accessing URL query string information from the request object
       let categoryCreate = request.query.categoryCreate;
@@ -41,8 +41,8 @@ app.get('/results', function(request, response) {
 
       categories[categoryCreate] = activities;
 
-      //update opponents.json to permanently remember results
-      fs.writeFileSync('data/opponents.json', JSON.stringify(activities));
+      //update toDo.json to permanently remember results
+      fs.writeFileSync('data/toDo.json', JSON.stringify(activities));
 
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
@@ -60,7 +60,7 @@ app.get('/results', function(request, response) {
 
 
 app.get('/Category/specific/:CategorySpecific', function(request, response) {
-  let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
+  let opponents = JSON.parse(fs.readFileSync('data/toDo.json'));
 
   // using dynamic routes to specify resource request information
   let opponentName = request.params.CategorySpecific;
@@ -86,7 +86,7 @@ app.post('/CategoryCreate', function(request, response) {
     let opponentName = request.body.opponentName;
     let opponentPhoto = request.body.opponentPhoto;
     if(opponentName&&opponentPhoto){
-      let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
+      let opponents = JSON.parse(fs.readFileSync('data/toDo.json'));
       let newOpponent={
         "name": opponentName,
         "photo": opponentPhoto,
@@ -95,7 +95,7 @@ app.post('/CategoryCreate', function(request, response) {
         "tie": 0,
       }
       opponents[opponentName] = newOpponent;
-      fs.writeFileSync('data/opponents.json', JSON.stringify(opponents));
+      fs.writeFileSync('data/toDo.json', JSON.stringify(opponents));
       response.redirect("/Category/specific/"+opponentName);
     }else{
       console.log('ERROR');
@@ -105,10 +105,10 @@ app.post('/CategoryCreate', function(request, response) {
         "errorCode":"400"
       });
     }
-      console.log(JSON.parse(fs.readFileSync('data/opponents.json')));
+      console.log(JSON.parse(fs.readFileSync('data/toDo.json')));
 });
 app.get('/Category', function(request, response) {
-    let categories = JSON.parse(fs.readFileSync('data/opponents.json'));
+    let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("Category", {
