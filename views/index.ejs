@@ -1,13 +1,13 @@
 <%- include('partials/header', {title:"Tiger Helper"}) -%>
 
 <h1> ToDo List! </h1>
-
+<table>
 <% for (let day in data) { %>
-<br>
-<a href="/opponent/<%=day%>"><%=day%></a>
-<p> Chores: <%= data[day].chores %> </p>
-<p> Schoolwork: <%= data[day].schoolwork %> </p>
-<p> Recreational Activities: <%= data[day].recreational %> </p>
+  <tr>
+<th scope ="col"> <a href="/Category/<%=day%>"><%=day%></a> </th>
+<th scope ="col"> <% for (let categories in data[day]) { %> <%=data[day][categories] + ". "%>  <%} %>  </th>
+</tr>
+
 <% } %>
 
   <%- include('partials/footer') -%>

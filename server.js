@@ -109,6 +109,16 @@ app.get('/Category', function(request, response) {
     });
 });
 
+app.get('/Category/:day', function(request, response) {
+  let day = request.params.day;
+  let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("CategorySpecific", {
+      data: categories[day]
+    });
+});
+
 app.get('/CategoryCreate', function(request, response) {
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
