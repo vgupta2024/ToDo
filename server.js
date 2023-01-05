@@ -74,7 +74,7 @@ app.post('/CategoryCreate', function(request, response) {
         let day = request.body.day;
         if(day && category && activity){
         let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
-        categories[day][category] += activity;
+        categories[day][category] += activity + ", ";
         console.log(categories);
           fs.writeFileSync('data/toDo.json', JSON.stringify(categories));
           response.redirect("/");

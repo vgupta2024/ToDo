@@ -7,8 +7,10 @@
 <th scope ="col"> <a href="/Category/<%=day%>"><%=day%></a> </th>
 <th scope ="col">
 <% for (let categories in data[day]) { %>
+  <br>
 <% if (data[day][categories] != "") { %>
-<%=data[day][categories] + ". "%>
+<%=data[day][categories] %>
+<br>
   <%}} %>
 </th>
 </tr>
