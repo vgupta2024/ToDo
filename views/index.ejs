@@ -1,11 +1,16 @@
-<%- include('partials/header', {title:"Tiger Helper"}) -%>
+<%- include('partials/header', {title:"Tiger Helper"}, {data: data}) -%>
 
 <h1> ToDo List! </h1>
 <table>
 <% for (let day in data) { %>
   <tr>
 <th scope ="col"> <a href="/Category/<%=day%>"><%=day%></a> </th>
-<th scope ="col"> <% for (let categories in data[day]) { %> <%=data[day][categories] + ". "%>  <%} %>  </th>
+<th scope ="col">
+<% for (let categories in data[day]) { %>
+<% if (data[day][categories] != "") { %>
+<%=data[day][categories] + ". "%>
+  <%}} %>
+</th>
 </tr>
 
 <% } %>

@@ -1,25 +1,26 @@
-<%- include('partials/header', {title:"Tiger Helper Category"}) -%>
+<%- include('partials/header', {title:"Tiger Helper Category"}, {data:data}) -%>
 
-<p> Choose your opponent and make your thow!
 
-  <form action="/results" method="GET">
-    <img title="" src="" id="opponentImage" />
-    <label for="opponent">Choose an opponent:</label>
-    <select id="opponent" name="opponent">
-      <%for(player in data){%>
-
-      <option value="<%=player%>"><%=player%></option>
+  <form action="/Category" method="POST">
+    <label for="day"> Which Day?:</label>
+    <select id="day" name="day">
+      <%for(category in data){%>
+      <option value="<%=category%>"><%=category%></option>
       <%}%>
+      </select>
+      <br><br>
+    <label for="category"> Which Category?:</label>
+    <select id="category" name="category">
+      <%for(category in data){%>
+   <%for(type in data[category]){%>
+      <option value="<%=type%>"><%=type%></option>
+      <%}}%>
     </select>
     <br><br>
-    <label for="throw">Choose an throw:</label>
-    <select id="throw" name="throw">
-      <option value="Paper">Paper</option>
-      <option value="Rock">Rock</option>
-      <option value="Scissors">Scissors</option>
-    </select>
+    <label for="activity">What is the activity?:</label>
+    <input type="text" id="activity" name="activity" value=""><br>
     <br><br>
-    <input type="submit" value="Submit your Throw!">
+    <input type="submit" value="Add to your ToDo List!">
 
   </form>
 

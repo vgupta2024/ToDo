@@ -25,40 +25,6 @@ app.get('/', function(request, response) {
 });
 
 
-
-app.get('/results', function(request, response) {
-
-      let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
-
-      //accessing URL query string information from the request object
-      let categoryCreate = request.query.categoryCreate;
-      let activityCreate = request.query.activityCreate;
-      if(categories[categoryCreate]){
-        let activities={};
-
-      activities["category"]= categoryCreate;
-      activities["activity"]= activityCreate;
-
-      categories[categoryCreate] = activities;
-
-      //update toDo.json to permanently remember results
-      fs.writeFileSync('data/toDo.json', JSON.stringify(activities));
-
-      response.status(200);
-      response.setHeader('Content-Type', 'text/html')
-      response.render("results", {
-        data: results
-      });
-    }else{
-      response.status(404);
-      response.setHeader('Content-Type', 'text/html')
-      response.render("error", {
-        "errorCode":"404"
-      });
-    }
-});
-
-
 app.get('/Category/specific/:day/:CategorySpecific', function(request, response) {
   let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
 let day = request.params.day;
@@ -68,7 +34,7 @@ let day = request.params.day;
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("CategorySpecific",{
-      opponent: categories["Monday"][categoryName]
+      opponent: categories[day][categoryName]
     });
 
   }else{
@@ -89,15 +55,39 @@ app.post('/CategoryCreate', function(request, response) {
     categories[day][categoryName] = categoryAction;
     console.log(categories);
       fs.writeFileSync('data/toDo.json', JSON.stringify(categories));
-      response.redirect("/Category/specific/"+ day + "/" + categoryName);
+      response.redirect("/");
     }else{
       console.log('ERROR');
+        let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
       response.status(400);
       response.setHeader('Content-Type', 'text/html')
       response.render("error", {
-        "errorCode":"400"
+        "errorCode":"400",
+        data: categories
       });
     }
+});
+    app.post('/Category', function(request, response) {
+      console.log("POST");
+        let category = request.body.category;
+        let activity = request.body.activity;
+        let day = request.body.day;
+        if(day && category && activity){
+        let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
+        categories[day][category] += activity;
+        console.log(categories);
+          fs.writeFileSync('data/toDo.json', JSON.stringify(categories));
+          response.redirect("/");
+        }else{
+          console.log('ERROR');
+          let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
+          response.status(400);
+          response.setHeader('Content-Type', 'text/html')
+          response.render("error", {
+            data: categories,
+            "errorCode":"400"
+          });
+        }
 
 });
 app.get('/Category', function(request, response) {
@@ -115,14 +105,18 @@ app.get('/Category/:day', function(request, response) {
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("CategorySpecific", {
-      data: categories[day]
+      day: day,
+      data: categories
     });
 });
 
 app.get('/CategoryCreate', function(request, response) {
+  let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render("CategoryCreate");
+    response.render("CategoryCreate",  {
+        data: categories
+      });
 });
 
 
