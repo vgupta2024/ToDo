@@ -1,9 +1,14 @@
 <%- include('partials/header', {title:"Tiger Helper"}) -%>
 
-<p> Welcome to the official site of the Paper, Rock, Scissors: Tournament of Champions!
-  <br>
-  <br>
-  <a href="/play">click</a>
+<h1> ToDo List! </h1>
+
+<% for (let day in data) { %>
+<br>
+<a href="/opponent/<%=day%>"><%=day%></a>
+<p> Chores: <%= data[day].chores %> </p>
+<p> Schoolwork: <%= data[day].schoolwork %> </p>
+<p> Recreational Activities: <%= data[day].recreational %> </p>
+<% } %>
 
   <%- include('partials/footer') -%>
 

@@ -3,12 +3,14 @@
 <h2>Create a New Opponent!</h2>
 
 <form action="/CategoryCreate" method="POST">
+  <label for="day">Day:</label>
+  <input type="text" id="day" name="day" value=""><br>
   <label for="name">Name:</label>
-  <input type="text" id="name" name="opponentName" value=""><br>
-  <label for="photo">Link to Photo:</label>
-  <input type="text" id="photo" name="opponentPhoto" value=""><br>
+  <input type="text" id="name" name="categoryName" value=""><br>
+  <label for="description"> Within this category, what do you need to do?:</label>
+  <input type="text" id="description" name="categoryAction" value=""><br>
   <br><br>
-  <input type="submit" value="Create a new opponent!">
+  <input type="submit" value="Create a new category!">
 
 </form>
 

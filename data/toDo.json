@@ -1,44 +1,46 @@
 {
-"Monday": {
-"chores": NAN,
-"schoolwork": NAN,
-"recreational": NAN,
-},
-
-"Tuesday": {
-"chores": NAN,
-"schoolwork": NAN,
-"recreational": NAN,
-},
-
-"Wednesday": {
-"chores": NAN,
-"schoolwork": NAN,
-"recreational": NAN,
-},
-
-"Thursday": {
-"chores": NAN,
-"schoolwork": NAN,
-"recreational": NAN,
-},
-
-"Friday": {
-"chores": NAN,
-"schoolwork": NAN,
-"recreational": NAN,
-},
-
-"Saturday": {
-"chores": NAN,
-"schoolwork": NAN,
-"recreational": NAN,
-},
-
-"Sunday": {
-"chores": NAN,
-"schoolwork": NAN,
-"recreational": NAN,
-}
-
+  "Monday": {
+    "chores": "None",
+    "schoolwork": "None",
+    "recreational": "None",
+    "Hi": "Nothing"
+  },
+  "Tuesday": {
+    "chores": "None",
+    "schoolwork": "None",
+    "recreational": "None",
+    "Hi": "h",
+    "hello": "h",
+    "jawn": "test",
+    "tues": "test"
+  },
+  "Wednesday": {
+    "chores": "Some",
+    "schoolwork": "None",
+    "recreational": "None",
+    "Yooo": "Nothing",
+    "wed": "this"
+  },
+  "Thursday": {
+    "chores": "None",
+    "schoolwork": "None",
+    "recreational": "None",
+    "re": "do"
+  },
+  "Friday": {
+    "chores": "None",
+    "schoolwork": "None",
+    "recreational": "None",
+    "yo": "james"
+  },
+  "Saturday": {
+    "chores": "None",
+    "schoolwork": "None",
+    "recreational": "None"
+  },
+  "Sunday": {
+    "chores": "None",
+    "schoolwork": "None",
+    "recreational": "None"
+  }
 }

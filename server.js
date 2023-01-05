@@ -19,9 +19,12 @@ app.set('view engine', 'ejs'); //specify templating library
 //Express checks routes in the order in which they are defined
 
 app.get('/', function(request, response) {
+  let days = JSON.parse(fs.readFileSync('data/toDo.json'));
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
-  response.render("index");
+  response.render("index", {
+  data: days
+  });
 });
 
 
@@ -59,18 +62,16 @@ app.get('/results', function(request, response) {
 });
 
 
-app.get('/Category/specific/:CategorySpecific', function(request, response) {
-  let opponents = JSON.parse(fs.readFileSync('data/toDo.json'));
-
+app.get('/Category/specific/:day/:CategorySpecific', function(request, response) {
+  let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
+let day = request.params.day;
   // using dynamic routes to specify resource request information
-  let opponentName = request.params.CategorySpecific;
-  console.log(opponentName);
-  if(opponents[opponentName]){
-    console.log("h");
+  let categoryName = request.params.CategorySpecific;
+  if(categories[day][categoryName]){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("CategorySpecific",{
-      opponent: opponents[opponentName]
+      opponent: categories["Monday"][categoryName]
     });
 
   }else{
@@ -83,20 +84,15 @@ app.get('/Category/specific/:CategorySpecific', function(request, response) {
 });
 
 app.post('/CategoryCreate', function(request, response) {
-    let opponentName = request.body.opponentName;
-    let opponentPhoto = request.body.opponentPhoto;
-    if(opponentName&&opponentPhoto){
-      let opponents = JSON.parse(fs.readFileSync('data/toDo.json'));
-      let newOpponent={
-        "name": opponentName,
-        "photo": opponentPhoto,
-        "win":0,
-        "lose": 0,
-        "tie": 0,
-      }
-      opponents[opponentName] = newOpponent;
-      fs.writeFileSync('data/toDo.json', JSON.stringify(opponents));
-      response.redirect("/Category/specific/"+opponentName);
+    let categoryName = request.body.categoryName;
+    let day = request.body.day;
+    let categoryAction = request.body.categoryAction;
+    if(day && categoryName && categoryAction){
+      let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
+    categories[day][categoryName] = categoryAction;
+    console.log(categories);
+      fs.writeFileSync('data/toDo.json', JSON.stringify(categories));
+      response.redirect("/Category/specific/"+ day + "/" + categoryName);
     }else{
       console.log('ERROR');
       response.status(400);
@@ -105,7 +101,7 @@ app.post('/CategoryCreate', function(request, response) {
         "errorCode":"400"
       });
     }
-      console.log(JSON.parse(fs.readFileSync('data/toDo.json')));
+
 });
 app.get('/Category', function(request, response) {
     let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
