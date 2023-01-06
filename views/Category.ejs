@@ -5,7 +5,7 @@
     <label for="day"> Which Day?:</label>
     <select id="day" name="day">
       <%for(category in data){%>
-      <option value="<%=category.toUpperCase()%>"><%=category.toUpperCase()%></option>
+      <option value="<%=category%>"><%=category%></option>
       <%}%>
       </select>
       <br><br>
@@ -16,7 +16,7 @@
         <%i++%>
       <%for(type in data[day]){%>
       <%if(i<=1){%>
-        <option value="<%=type.toUpperCase()%>"><%=type.toUpperCase()%></option>
+        <option value="<%=type%>"><%=type%></option>
       <%}}}%>
     </select>
     <br><br>
