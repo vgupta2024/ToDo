@@ -48,12 +48,11 @@ let day = request.params.day;
 
 app.post('/CategoryCreate', function(request, response) {
     let categoryName = request.body.categoryName;
-    let day = request.body.day;
-    let categoryAction = request.body.categoryAction;
-    if(day && categoryName && categoryAction){
+    if(categoryName){
       let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
-    categories[day][categoryName] = categoryAction;
-    console.log(categories);
+      for(day in categories){
+    categories[day][categoryName] = "";
+  }
       fs.writeFileSync('data/toDo.json', JSON.stringify(categories));
       response.redirect("/");
     }else{
