@@ -1,9 +1,9 @@
 <%- include('partials/header', {title:"Tiger Helper Category Specific"}, {data: data}) -%>
 
-<h1> <%= day %> </h1>
+<h1> <%= day.toUpperCase() %> </h1>
 
 <% for (activities in data[day]) { %>
-<p> <%= activities%>: <%=data[day][activities]%> </p>
+<p> <%= activities.toUpperCase()%>: <%=data[day][activities].toUpperCase()%> </p>
 <% } %>
 <%- include('partials/footer') -%>
 

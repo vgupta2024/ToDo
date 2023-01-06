@@ -20,7 +20,7 @@
         </a>
         <ul class="dropdown-menu">
           <% for(let day in data){ %>
-            <li><a class="dropdown-item" href= "/Category/<%=day%>"><%=day%></a></li>
+            <li><a class="dropdown-item" href= "/Category/<%=day%>"><%=day.toUpperCase()%></a></li>
             <%}%>
           </ul>
 

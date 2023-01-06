@@ -1,1 +1,37 @@
-{"Monday":{"chores":"n, ","schoolwork":"nnp, ","recreational":"","Varun":"Eat"},"Tuesday":{"chores":"","schoolwork":"","recreational":""},"Wednesday":{"chores":"","schoolwork":"","recreational":""},"Thursday":{"chores":"","schoolwork":"","recreational":""},"Friday":{"chores":"","schoolwork":"","recreational":""},"Saturday":{"chores":"","schoolwork":"","recreational":""},"Sunday":{"chores":"","schoolwork":"","recreational":""}}
+{
+  "Monday": {
+    "chores": "",
+    "schoolwork": "",
+    "recreational": ""
+  },
+  "Tuesday": {
+    "chores": "",
+    "schoolwork": "",
+    "recreational": ""
+  },
+  "Wednesday": {
+    "chores": "",
+    "schoolwork": "",
+    "recreational": ""
+  },
+  "Thursday": {
+    "chores": "",
+    "schoolwork": "",
+    "recreational": ""
+  },
+  "Friday": {
+    "chores": "",
+    "schoolwork": "",
+    "recreational": ""
+  },
+  "Saturday": {
+    "chores": "",
+    "schoolwork": "",
+    "recreational": ""
+  },
+  "Sunday": {
+    "chores": "",
+    "schoolwork": "",
+    "recreational": ""
+  }
+}
