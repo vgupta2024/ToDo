@@ -11,10 +11,13 @@
       <br><br>
     <label for="category"> Which Category?:</label>
     <select id="category" name="category">
-      <%for(category in data){%>
-   <%for(type in data[category]){%>
-      <option value="<%=type%>"><%=type%></option>
-      <%}}%>
+      <%let i = 0%>
+      <%for(day in data){%>
+        <%i++%>
+      <%for(type in data[day]){%>
+      <%if(i<=1){%>
+        <option value="<%=type%>"><%=type%></option>
+      <%}}}%>
     </select>
     <br><br>
     <label for="activity">What is the activity?:</label>
