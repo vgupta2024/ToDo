@@ -3,18 +3,8 @@
 <h2>Create a New Category!</h2>
 
 <form action="/CategoryCreate" method="POST">
-  <label for="day">Day:</label>
-  <select id="day" name="day">
-    <%for(category in data){%>
-    <option value="<%=category%>"><%=category%></option>
-    <%}%>
-    </select>
-    <br><br>
   <label for="name">Name:</label>
   <input type="text" id="name" name="categoryName" value=""><br>
-  <label for="description"> Within this category, what do you need to do?:</label>
-  <input type="text" id="description" name="categoryAction" value=""><br>
-  <br><br>
   <input type="submit" value="Create a new category!">
 
 </form>
