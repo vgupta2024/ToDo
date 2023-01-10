@@ -11,22 +11,18 @@
     </tr>
   </thead>
   <tbody>
-    <% let i =0 %>
-      <% for (let day in data) { %>
-        <% i++ %>
-      <% for (let categories in data[day]) { %>
+      <% for (let categories in data["Monday"]) { %>
         <tr>
-          <% if(i<=1) { %>
           <th>
             <%=categories%>
           </th>
-          <% } %>
-          <% if (data[day][categories] != "") { %>
+          <% for (let d in data) { %>
             <td>
-              <%=data[day][categories]%>
+              <%=data[d][categories]%>
             </td>
+            <%}}%>
         </tr>
-    <%}}} %>
+
     </tbody>
 
 
