@@ -31,10 +31,11 @@ app.get('/', function(request, response) {
   response.setHeader('Content-Type', 'text/html')
   for (day in data) {
   for (categories in data[day]) {
- data[day][categories] = "";
+  data[day][categories] = "";
+  console.log(data);
   }
   }
-  fs.writeFileSync('data/toDo.json', JSON.stringify(categories));
+   fs.writeFileSync('data/toDo.json', JSON.stringify(data));
   response.redirect("/");
   });
 
