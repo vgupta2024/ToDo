@@ -1,32 +1,34 @@
 <%- include('partials/header', {title:"Tiger Helper"}, {data: data}) -%>
 
-<h1> ToDo List! </h1>
-<table class="table">
-  <thead>
-    <tr>
-    <th>Categories</th>
-      <% for (let day in data) { %>
-    <th scope="col"> <a href="/Category/<%=day%>"><%=day%></a> </th>
-    <% } %>
-    </tr>
-  </thead>
-  <tbody>
-      <% for (let categories in data["Monday"]) { %>
+  <div class="jumbotron">
+  <div class="container">
+    <h1 class="display-4"> ToDo List! </h1>
+    <table class="table">
+      <thead>
         <tr>
-          <th>
-            <%=categories%>
-          </th>
-          <% for (let d in data) { %>
-            <td>
-              <%=data[d][categories]%>
-            </td>
-            <%}}%>
-        </tr>
+          <th>Categories</th>
+          <% for (let day in data) { %>
+            <th class="lead"> <a href="/Category/<%=day%>"><%=day%></a> </th>
+            <% } %>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (let categories in data["Monday"]) { %>
+            <tr>
+              <th class="lead">
+                <%=categories%>
+              </th>
+              <% for (let d in data) { %>
+              <td>
+                <%=data[d][categories]%>
+              </td>
+              <%}}%>
+            </tr>
 
-    </tbody>
-
-
-</table>
+          </tbody>
+        </table>
+      </div>
+    </div>
   <%- include('partials/footer') -%>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
