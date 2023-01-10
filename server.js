@@ -24,6 +24,20 @@ app.get('/', function(request, response) {
   });
 });
 
+  app.get('/Reset', function(request, response) {
+    console.log("HERE");
+  let data = JSON.parse(fs.readFileSync('data/toDo.json'));
+  response.status(200);
+  response.setHeader('Content-Type', 'text/html')
+  for (day in data) {
+  for (categories in data[day]) {
+ data[day][categories] = "";
+  }
+  }
+  fs.writeFileSync('data/toDo.json', JSON.stringify(categories));
+  response.redirect("/");
+  });
+
 
 app.get('/Category/specific/:day/:CategorySpecific', function(request, response) {
   let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
