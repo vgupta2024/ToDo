@@ -4,6 +4,7 @@
 <table class="table">
   <thead>
     <tr>
+    <th>Categories</th>
       <% for (let day in data) { %>
     <th scope="col"> <a href="/Category/<%=day%>"><%=day%></a> </th>
     <% } %>
@@ -25,11 +26,10 @@
               <%=data[day][categories]%>
             </td>
         </tr>
-    <%}} %>
+    <%}}} %>
     </tbody>
 
 
-  <% } %>
 </table>
   <%- include('partials/footer') -%>
 
