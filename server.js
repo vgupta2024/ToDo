@@ -81,14 +81,12 @@ app.post('/CategoryCreate', function(request, response) {
     }
 });
     app.post('/Category', function(request, response) {
-      console.log("POST");
         let category = request.body.category;
         let activity = request.body.activity;
         let day = request.body.day;
         if(day && category && activity){
         let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
         categories[day][category] += activity + ", ";
-        console.log(categories);
           fs.writeFileSync('data/toDo.json', JSON.stringify(categories));
           response.redirect("/");
         }else{
