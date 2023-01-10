@@ -24,6 +24,17 @@ app.get('/', function(request, response) {
   });
 });
 
+app.get('/Delete/:category', function(request, response) {
+  console.log("delete");
+    let category = request.params.category;
+      let data = JSON.parse(fs.readFileSync('data/toDo.json'));
+      for(day in data){
+  delete data[day][category];
+  }
+      fs.writeFileSync('data/toDo.json', JSON.stringify(data));
+      response.redirect("/");
+});
+
   app.get('/Reset', function(request, response) {
     console.log("HERE");
   let data = JSON.parse(fs.readFileSync('data/toDo.json'));
