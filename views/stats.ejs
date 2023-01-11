@@ -5,22 +5,50 @@
 <div class="container">
   <h1 class="display-4"> ToDo List! </h1>
   <table class="table">
+    <thead>
+      <tr>
+        <th>Categories</th>
+        <% for (let day in data) { %>
+          <th>
+        <%  if (data[day]["To-Do"] == 0  && data[day]["In-Progress"] == 0 && data[day]["Overdue"] == 0 && data[day]["Completed"] == 0) { %>
+        <form action="/Stats/<%=day%>" method="POST">
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something">
+      <label class="form-check-label" for="check1">To-Do</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
+      <label class="form-check-label" for="check2">In Progress</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="check3" name="option3" value="something">
+      <label class="form-check-label" for="check2">Overdue</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="check4" name="option4" value="something">
+      <label class="form-check-label" for="check2">Completed</label>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+  </form>
+  <% } %>
+  <br><br><br>
+     <a href="/Category/<%=day%>"><%=day%></a>
+   </th>
+          <% } %>
+        </tr>
+      </thead>
       <tbody>
-        <% for (let stat in data) { %>
-        <tr>
-          <th class="lead"> <%=stat%> </th>
-        <% for (let thing in data[stat]) { %>
+        <% for (let categories in data["Monday"]) { %>
+          <tr>
+            <th class="lead">
+              <%=categories%>
+            </th>
+            <% for (let d in data) { %>
             <td>
-              <%=thing%>
+              <%=data[d][categories]%>
             </td>
-            <%}%>
-            <td>
-              <a href="/Edit/<%=categories%>"><i class="material-icons">&#xE254;</i></a>
-              <a href="/Delete/<%=categories%>"><i class="material-icons">&#xE872;</i></a>
-
-            </td>
+            <%}}%>
           </tr>
-          <%}%>
 
         </tbody>
       </table>

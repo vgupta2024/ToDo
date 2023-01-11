@@ -24,6 +24,51 @@ app.get('/', function(request, response) {
   });
 });
 
+app.get('/Stats', function(request, response) {
+  let data = JSON.parse(fs.readFileSync('data/stats.json'));
+  response.status(200);
+  response.setHeader('Content-Type', 'text/html')
+  response.render("stats", {
+  data: data
+  });
+});
+
+app.post('/Stats/:day', function(request, response) {
+    let todo = request.body.option1;
+    let progress = request.body.option2;
+    let overdue = request.body.option3;
+    let complete = request.body.option4;
+    let day = request.params.day;
+    if (todo || progress || overdue || complete) {
+      let stats = JSON.parse(fs.readFileSync('data/stats.json'));
+      if (todo) {
+    stats[day]["To-Do"] += 1;
+  }
+    if (progress) {
+    stats[day]["In-Progress"] += 1;
+  }
+    if (overdue) {
+    stats[day]["Overdue"] +=1;
+}
+  if (complete) {
+    stats[day]["Completed"] +=1;
+  }
+
+      fs.writeFileSync('data/stats.json', JSON.stringify(stats));
+      response.redirect("/stats");
+    }else{
+      console.log('ERROR');
+        let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
+      response.status(400);
+      response.setHeader('Content-Type', 'text/html')
+      response.render("error", {
+        "errorCode":"400",
+        data: categories
+      });
+    }
+});
+
+
 app.get('/EditCategory/:category', function(request, response) {
   let data = JSON.parse(fs.readFileSync('data/toDo.json'));
   let category = request.params.category;
