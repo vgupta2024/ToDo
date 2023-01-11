@@ -15,7 +15,7 @@
         <tbody>
             <tr>
               <th class="lead">
-                <form action="/Edit/<%=category%>" method="POST">
+                <form action="/EditCategory/<%=category%>" method="POST">
                   <input type="text" id="name" name="categoryName" value="<%= category %>"><br>
                   <input type="submit" value="Rename Category!">
 
@@ -23,7 +23,9 @@
               </th>
               <% for (let d in data) { %>
               <td>
-                <%=data[d][category]%>
+                <form action="/EditActivity/<%=category%>/<%=data[d][category]%>" method="POST">
+                  <input type="text" id="name" name="activity" value="<%=data[d][category]%>"><br>
+                  <input type="submit" value="Rename Activity!">
               </td>
               <%}%>
             </tr>

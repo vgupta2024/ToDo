@@ -24,7 +24,7 @@ app.get('/', function(request, response) {
   });
 });
 
-app.get('/Edit/:category', function(request, response) {
+app.get('/EditCategory/:category', function(request, response) {
   let data = JSON.parse(fs.readFileSync('data/toDo.json'));
   let category = request.params.category;
   response.status(200);
@@ -35,7 +35,7 @@ app.get('/Edit/:category', function(request, response) {
   });
 });
 
-app.post('/Edit/:category', function(request, response) {
+app.post('/EditCategory/:category', function(request, response) {
     let categoryName = request.body.categoryName;
     let category = request.params.category;
     if(categoryName){
@@ -50,6 +50,29 @@ app.post('/Edit/:category', function(request, response) {
     }else{
       console.log('ERROR');
         let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
+      response.status(400);
+      response.setHeader('Content-Type', 'text/html')
+      response.render("error", {
+        "errorCode":"400",
+        data: categories
+      });
+    }
+});
+
+app.post('/EditActivity/:day/:category/:activity', function(request, response) {
+    let activity= request.body.activity;
+    let category = request.params.category;
+    if(activity){
+      let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
+      for (days in categories) {
+    categories[days][category] = activity;
+}
+
+      fs.writeFileSync('data/toDo.json', JSON.stringify(categories));
+      response.redirect("/");
+    }else{
+      console.log('ERROR');
+      let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
       response.status(400);
       response.setHeader('Content-Type', 'text/html')
       response.render("error", {
