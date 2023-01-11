@@ -13,23 +13,19 @@
           </tr>
         </thead>
         <tbody>
-          <% for (let categories in data["Monday"]) { %>
             <tr>
               <th class="lead">
-                <%=categories%>
+                <form action="/Edit/<%=category%>" method="POST">
+                  <input type="text" id="name" name="categoryName" value="<%= category %>"><br>
+                  <input type="submit" value="Rename Category!">
+
+                </form>
               </th>
               <% for (let d in data) { %>
               <td>
-                <%=data[d][categories]%>
+                <%=data[d][category]%>
               </td>
-              <%if(d=='Sunday'){%>
-              <td>
-                  <a href="/Edit/<%=categories%>"><i class="material-icons">&#xE254;</i></a>
-								<a href="/Delete/<%=categories%>"><i class="material-icons">&#xE872;</i></a>
-
-							</td>
               <%}%>
-              <%}}%>
             </tr>
 
           </tbody>

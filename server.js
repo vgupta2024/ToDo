@@ -24,6 +24,41 @@ app.get('/', function(request, response) {
   });
 });
 
+app.get('/Edit/:category', function(request, response) {
+  let data = JSON.parse(fs.readFileSync('data/toDo.json'));
+  let category = request.params.category;
+  response.status(200);
+  response.setHeader('Content-Type', 'text/html')
+  response.render("indexEdit", {
+  data: data,
+  category: category
+  });
+});
+
+app.post('/Edit/:category', function(request, response) {
+    let categoryName = request.body.categoryName;
+    let category = request.params.category;
+    if(categoryName){
+      let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
+      for (days in categories) {
+    categories[days][categoryName] = categories[days][category];
+    delete categories[days][category];
+}
+
+      fs.writeFileSync('data/toDo.json', JSON.stringify(categories));
+      response.redirect("/");
+    }else{
+      console.log('ERROR');
+        let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
+      response.status(400);
+      response.setHeader('Content-Type', 'text/html')
+      response.render("error", {
+        "errorCode":"400",
+        data: categories
+      });
+    }
+});
+
 app.get('/Delete/:category', function(request, response) {
   console.log("delete");
     let category = request.params.category;
