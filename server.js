@@ -62,15 +62,14 @@ app.post('/EditCategory/:category', function(request, response) {
 app.post('/EditActivity/:day/:category/:activity', function(request, response) {
     let activity= request.body.activity;
     let category = request.params.category;
-    if(activity){
-      let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
-      for (days in categories) {
-    categories[days][category] = activity;
-}
-
-      fs.writeFileSync('data/toDo.json', JSON.stringify(categories));
+      let day = request.params.day;
+    if(activity && category && day){
+      let data = JSON.parse(fs.readFileSync('data/toDo.json'));
+    data[day][category] = activity;
+  console.log(day);
+      fs.writeFileSync('data/toDo.json', JSON.stringify(data));
       response.redirect("/");
-    }else{
+    } else{
       console.log('ERROR');
       let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
       response.status(400);

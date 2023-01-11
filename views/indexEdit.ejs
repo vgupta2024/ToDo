@@ -23,9 +23,13 @@
               </th>
               <% for (let d in data) { %>
               <td>
-                <form action="/EditActivity/<%=category%>/<%=data[d][category]%>" method="POST">
+                <% if (data[d][category] != "") { %>
+
+                <form action="/EditActivity/<%= d %>/<%=category%>/<%=data[d][category]%>" method="POST">
+
                   <input type="text" id="name" name="activity" value="<%=data[d][category]%>"><br>
-                  <input type="submit" value="Rename Activity!">
+                  <input type="submit" value="Rename <%= d %> Activity!">
+                    <% } %>
               </td>
               <%}%>
             </tr>
