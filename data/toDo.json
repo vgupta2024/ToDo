@@ -1,1 +1,41 @@
+<<<<<<< Updated upstream
 {"Monday":{},"Tuesday":{},"Wednesday":{},"Thursday":{},"Friday":{},"Saturday":{},"Sunday":{}}
+=======
+{
+  "Monday": {
+    "Varun": "Eat, ",
+    "James": "w, ",
+    "N": ""
+  },
+  "Tuesday": {
+    "Varun": "",
+    "James": "",
+    "N": ""
+  },
+  "Wednesday": {
+    "Varun": "",
+    "James": "",
+    "N": ""
+  },
+  "Thursday": {
+    "Varun": "",
+    "James": "",
+    "N": ""
+  },
+  "Friday": {
+    "Varun": "",
+    "James": "",
+    "N": ""
+  },
+  "Saturday": {
+    "Varun": "",
+    "James": "",
+    "N": ""
+  },
+  "Sunday": {
+    "Varun": "",
+    "James": "",
+    "N": ""
+  }
+}
+>>>>>>> Stashed changes
