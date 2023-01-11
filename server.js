@@ -25,11 +25,13 @@ app.get('/', function(request, response) {
 });
 
 app.get('/Stats', function(request, response) {
-  let data = JSON.parse(fs.readFileSync('data/stats.json'));
+  let stats = JSON.parse(fs.readFileSync('data/stats.json'));
+  let data = JSON.parse(fs.readFileSync('data/toDo.json'));
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
   response.render("stats", {
-  data: data
+  data: stats,
+  categories: data
   });
 });
 
@@ -194,6 +196,7 @@ app.get('/Delete/:category', function(request, response) {
   app.get('/Reset', function(request, response) {
     console.log("HERE");
   let data = JSON.parse(fs.readFileSync('data/toDo.json'));
+  let stats = JSON.parse(fs.readFileSync('data/stats.json'));
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
   for (day in data) {
@@ -202,7 +205,13 @@ app.get('/Delete/:category', function(request, response) {
   console.log(data);
   }
   }
+  for (day in stats) {
+  for (categories in stats[day]) {
+  stats[day][categories] = 0;
+  }
+  }
    fs.writeFileSync('data/toDo.json', JSON.stringify(data));
+   fs.writeFileSync('data/stats.json', JSON.stringify(stats));
   response.redirect("/");
   });
 

@@ -6,7 +6,7 @@
   <h1 class="display-4"> ToDo List! </h1>
   <table class="table">
     <thead>
-      <tr>
+      <tr bgcolor>
         <th>Categories</th>
         <% for (let day in data) { %>
           <th>
@@ -38,17 +38,19 @@
         </tr>
       </thead>
       <tbody>
-        <% for (let categories in data["Monday"]) { %>
+        <% for (let spec in categories["Monday"]) { %>
           <tr>
             <th class="lead">
-              <%=categories%>
+              <%=spec%>
             </th>
-            <% for (let d in data) { %>
-            <td>
-              <%=data[d][categories]%>
+            <% for (let d in categories) { %>
+            <td id = "<%=d%>" style="background-color:lightgreen">
+              <%=categories[d][spec]%>
             </td>
             <%}}%>
           </tr>
+
+
 
         </tbody>
       </table>
