@@ -6,36 +6,17 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Categories</th>
-          <% for (let day in data) { %>
-            <th class="lead"> <a href="/Category/<%=day%>"><%=day%></a> </th>
-            <% } %>
-          </tr>
         </thead>
         <tbody>
-          <% for (let categories in data["Monday"]) { %>
             <tr>
               <th class="lead">
-                <%=categories%>
-                 <a href="/EditCategory/<%=categories%>"><i class="material-icons">&#xE254;</i></a>
+                <form action="/EditActivity/<%=day%>/<%=category%>/<%=activity%>" method="POST">
+                  <input type="text" id="name" name="activityName" value="<%=activity%>"><br>
+                  <input type="submit" value="Rename activity!">
+
+                </form>
               </th>
-              <% for (let d in data) { %>
-              <td>
-                <%=data[d][categories]%>
-                <% if (data[d][categories]) { %>
-               <a href="/EditActivity/<%= d %>/<%=categories%>/<%=data[d][categories]%>"><i class="material-icons">&#xE254;</i></a>
-              <%}%>
-              </td>
-              <%if(d=='Sunday'){%>
-              <td>
-								<a href="/Delete/<%=categories%>"><i class="material-icons">&#xE872;</i></a>
-
-							</td>
-              <%}%>
-              <%}}%>
-            </tr>
-
-          </tbody>
+        </tbody>
         </table>
       </div>
     </div>

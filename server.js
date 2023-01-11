@@ -29,7 +29,7 @@ app.get('/EditCategory/:category', function(request, response) {
   let category = request.params.category;
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
-  response.render("indexEdit", {
+  response.render("categoryEdit", {
   data: data,
   category: category
   });
@@ -41,8 +41,10 @@ app.post('/EditCategory/:category', function(request, response) {
     if(categoryName){
       let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
       for (days in categories) {
+        if (category != categoryName) {
     categories[days][categoryName] = categories[days][category];
     delete categories[days][category];
+  }
 }
 
       fs.writeFileSync('data/toDo.json', JSON.stringify(categories));
@@ -59,14 +61,66 @@ app.post('/EditCategory/:category', function(request, response) {
     }
 });
 
-app.post('/EditActivity/:day/:category/:activity', function(request, response) {
-    let activity= request.body.activity;
+app.get('/EditActivity/:day/:category/:activity', function(request, response) {
+  let data = JSON.parse(fs.readFileSync('data/toDo.json'));
+  let activity= request.params.activity;
+  let category = request.params.category;
+    let day = request.params.day;
+    if (activity)
+  response.status(200);
+  response.setHeader('Content-Type', 'text/html')
+  response.render("ActivityEdit", {
+  data: data,
+  activity: activity,
+  day: day,
+  category: category
+  });
+});
+
+app.get('/EditActivity/:day/:category/', function(request, response) {
+  let data = JSON.parse(fs.readFileSync('data/toDo.json'));
+  let category = request.params.category;
+    let day = request.params.day;
+  response.status(200);
+  response.setHeader('Content-Type', 'text/html')
+  response.render("ActivityEdit", {
+  data: data,
+  activity: "",
+  day: day,
+  category: category
+  });
+});
+
+app.post('/EditActivity/:day/:category/', function(request, response) {
+    let activity= request.body.activityName;
     let category = request.params.category;
       let day = request.params.day;
-    if(activity && category && day){
+    if(activity){
       let data = JSON.parse(fs.readFileSync('data/toDo.json'));
     data[day][category] = activity;
-  console.log(day);
+      fs.writeFileSync('data/toDo.json', JSON.stringify(data));
+      response.redirect("/");
+    } else{
+      console.log('ERROR');
+      let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
+      response.status(400);
+      response.setHeader('Content-Type', 'text/html')
+      response.render("error", {
+        "errorCode":"400",
+        data: categories
+      });
+    }
+});
+
+
+app.post('/EditActivity/:day/:category/:activity', function(request, response) {
+    let activity= request.body.activityName;
+    let category = request.params.category;
+      let day = request.params.day;
+    console.log(activity);
+    if(activity){
+      let data = JSON.parse(fs.readFileSync('data/toDo.json'));
+    data[day][category] = activity;
       fs.writeFileSync('data/toDo.json', JSON.stringify(data));
       response.redirect("/");
     } else{
