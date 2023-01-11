@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-{"Monday":{},"Tuesday":{},"Wednesday":{},"Thursday":{},"Friday":{},"Saturday":{},"Sunday":{}}
-=======
-{
-  "Monday": {
+  {"Monday": {
     "Varun": "Eat, ",
     "James": "w, ",
     "N": ""
@@ -38,4 +34,3 @@
     "N": ""
   }
 }
->>>>>>> Stashed changes
