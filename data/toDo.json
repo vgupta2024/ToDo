@@ -1,1 +1,23 @@
-{"Monday":{"Work":""},"Tuesday":{"Work":""},"Wednesday":{"Work":""},"Thursday":{"Work":""},"Friday":{"Work":""},"Saturday":{"Work":""},"Sunday":{"Work":""}}
+{
+  "Monday": {
+    "Work": ""
+  },
+  "Tuesday": {
+    "Work": ""
+  },
+  "Wednesday": {
+    "Work": ""
+  },
+  "Thursday": {
+    "Work": ""
+  },
+  "Friday": {
+    "Work": ""
+  },
+  "Saturday": {
+    "Work": ""
+  },
+  "Sunday": {
+    "Work": ""
+  }
+}
