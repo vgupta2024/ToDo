@@ -1,6 +1,8 @@
 <%- include('partials/header', {title:"Tiger Helper Category"}, {data:data}) -%>
 
-
+<div class="jumbotron">
+<div class="container">
+  <h2 class="display-4">Add Activity to Category!</h2>
   <form action="/Category" method="POST">
     <label for="day"> Which Day?:</label>
     <select id="day" name="day">
@@ -21,11 +23,13 @@
     </select>
     <br><br>
     <label for="activity">What is the activity?:</label>
-    <input type="text" id="activity" name="activity" value=""><br>
+    <input class="lead" type="text" id="activity" name="activity" value=""><br>
     <br><br>
-    <input type="submit" value="Add to your ToDo List!">
+    <input class="lead" type="submit" value="Add to your ToDo List!">
 
   </form>
+</div>
+</div>
 
   <%- include('partials/footer') -%>
 
