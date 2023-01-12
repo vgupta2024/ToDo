@@ -32,7 +32,7 @@
   </form>
   <% } %>
   <br><br><br>
-     <a href="/Category/<%=day%>"><%=day%></a>
+     <a href="/Category/<%=day%>"> <h1 style="background-color: <%= data[day]["color"] %>"> <%=day%> </h1></a>
    </th>
           <% } %>
         </tr>
@@ -41,10 +41,10 @@
         <% for (let spec in categories["Monday"]) { %>
           <tr>
             <th class="lead">
-              <%=spec%>
+            <%= spec %>
             </th>
             <% for (let d in categories) { %>
-            <td id = "<%=d%>" style="background-color:lightgreen">
+            <td>
               <%=categories[d][spec]%>
             </td>
             <%}}%>

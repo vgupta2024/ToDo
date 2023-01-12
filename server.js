@@ -45,15 +45,19 @@ app.post('/Stats/:day', function(request, response) {
       let stats = JSON.parse(fs.readFileSync('data/stats.json'));
       if (todo) {
     stats[day]["To-Do"] += 1;
+    stats[day]["color"] = "blue";
   }
     if (progress) {
     stats[day]["In-Progress"] += 1;
+      stats[day]["color"] = "yellow";
   }
     if (overdue) {
     stats[day]["Overdue"] +=1;
+      stats[day]["color"] = "red";
 }
   if (complete) {
     stats[day]["Completed"] +=1;
+      stats[day]["color"] = "lightgreen";
   }
 
       fs.writeFileSync('data/stats.json', JSON.stringify(stats));
