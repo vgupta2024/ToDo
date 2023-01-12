@@ -1,1 +1,55 @@
+<<<<<<< HEAD
 {"Monday":{"Completed":0,"In-Progress":0,"Overdue":0,"To-Do":0,"color":"gray"},"Tuesday":{"Completed":0,"In-Progress":0,"Overdue":0,"To-Do":0},"Wednesday":{"Completed":0,"In-Progress":0,"Overdue":0,"To-Do":0},"Thursday":{"Completed":0,"In-Progress":0,"Overdue":0,"To-Do":0},"Friday":{"Completed":0,"In-Progress":0,"Overdue":0,"To-Do":0},"Saturday":{"Completed":0,"In-Progress":0,"Overdue":0,"To-Do":0},"Sunday":{"Completed":0,"In-Progress":0,"Overdue":0,"To-Do":0}}
+=======
+{
+  "Monday": {
+    "color": "lightgreen",
+    "Completed": 1,
+    "In-Progress": 0,
+    "Overdue": 0,
+    "To-Do": 0
+  },
+  "Tuesday": {
+    "color": "gray",
+    "Completed": 0,
+    "In-Progress": 0,
+    "Overdue": 0,
+    "To-Do": 0
+  },
+  "Wednesday": {
+    "color": "gray",
+    "Completed": 0,
+    "In-Progress": 0,
+    "Overdue": 0,
+    "To-Do": 0
+  },
+  "Thursday": {
+    "color": "gray",
+    "Completed": 0,
+    "In-Progress": 0,
+    "Overdue": 0,
+    "To-Do": 0
+  },
+  "Friday": {
+    "color": "gray",
+    "Completed": 0,
+    "In-Progress": 0,
+    "Overdue": 0,
+    "To-Do": 0
+  },
+  "Saturday": {
+    "color": "gray",
+    "Completed": 0,
+    "In-Progress": 0,
+    "Overdue": 0,
+    "To-Do": 0
+  },
+  "Sunday": {
+    "color": "gray",
+    "Completed": 0,
+    "In-Progress": 0,
+    "Overdue": 0,
+    "To-Do": 0
+  }
+}
+>>>>>>> ff8b691d96ba7df7dc1863e0ca0424814acf0915
