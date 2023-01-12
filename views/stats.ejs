@@ -10,7 +10,7 @@
         <th class="display-6">Days:</th>
         <% for (let day in data) { %>
           <th>
-        <%  if (data[day]["To-Do"] == 0  && data[day]["In-Progress"] == 0 && data[day]["Overdue"] == 0 && data[day]["Completed"] == 0) { %>
+        <%  if (data[day]["Completed"] == 0) { %>
         <form action="/Stats/<%=day%>" method="POST">
     <div class="form-check">
       <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something">
