@@ -1,4 +1,4 @@
-<%- include('partials/header', {title:"Tiger Helper Category Specific"}, {data: data}) -%>
+<%- include('partials/header', {title:"Tiger Helper Category Specific"}, {data: data, data2: data2}) -%>
 
 <div class="jumbotron">
 <div class="container">
@@ -6,7 +6,11 @@
 
 <% for (activities in data[day]) { %>
 <p> <%= activities%>: <%=data[day][activities]%> </p>
+
 <% } %>
+
+<% let r = data2[day]%>
+<p class="lead"> Reflection: <%= r%> </p>
 
 </div>
 </div>

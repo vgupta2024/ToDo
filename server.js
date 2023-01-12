@@ -201,6 +201,7 @@ app.get('/Delete/:category', function(request, response) {
     console.log("HERE");
   let data = JSON.parse(fs.readFileSync('data/toDo.json'));
   let stats = JSON.parse(fs.readFileSync('data/stats.json'));
+  let data2 = JSON.parse(fs.readFileSync('data/summary.json'));
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
   for (day in data) {
@@ -218,7 +219,11 @@ app.get('/Delete/:category', function(request, response) {
 }
 }
   }
+  for(day in data2){
+    data2[day] = "";
+  }
    fs.writeFileSync('data/toDo.json', JSON.stringify(data));
+   fs.writeFileSync('data/summary.json', JSON.stringify(data2));
    fs.writeFileSync('data/stats.json', JSON.stringify(stats));
   response.redirect("/");
   });
@@ -290,6 +295,41 @@ app.post('/CategoryCreate', function(request, response) {
         }
 
 });
+
+app.post('/Reflect', function(request, response) {
+    let day = request.body.day;
+    let reflection = request.body.reflection;
+    if(day && reflection){
+    let data = JSON.parse(fs.readFileSync('data/toDo.json'));
+    let data2 = JSON.parse(fs.readFileSync('data/summary.json'));
+      data2[day] = reflection;
+      fs.writeFileSync('data/summary.json', JSON.stringify(data2));
+      response.redirect("/");
+    }else{
+      console.log('ERROR');
+      let data = JSON.parse(fs.readFileSync('data/toDo.json'));
+      let data2 = JSON.parse(fs.readFileSync('data/summary.json'));
+      response.status(400);
+      response.setHeader('Content-Type', 'text/html')
+      response.render("error", {
+        data: categories,
+        "errorCode":"400"
+      });
+    }
+
+});
+
+app.get('/Reflect', function(request, response) {
+    let toDo = JSON.parse(fs.readFileSync('data/toDo.json'));
+    let summary = JSON.parse(fs.readFileSync('data/summary.json'));
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("reflections", {
+      data: toDo,
+      data2: summary
+    });
+});
+
 app.get('/Category', function(request, response) {
     let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
     response.status(200);
@@ -302,11 +342,13 @@ app.get('/Category', function(request, response) {
 app.get('/Category/:day', function(request, response) {
   let day = request.params.day;
   let categories = JSON.parse(fs.readFileSync('data/toDo.json'));
+  let summary = JSON.parse(fs.readFileSync('data/summary.json'));
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("CategorySpecific", {
       day: day,
-      data: categories
+      data: categories,
+      data2: summary
     });
 });
 
