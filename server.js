@@ -49,7 +49,7 @@ app.post('/Stats/:day', function(request, response) {
   }
     if (progress) {
     stats[day]["In-Progress"] += 1;
-      stats[day]["color"] = "yellow";
+      stats[day]["color"] = "orange";
   }
     if (overdue) {
     stats[day]["Overdue"] +=1;
@@ -211,8 +211,12 @@ app.get('/Delete/:category', function(request, response) {
   }
   for (day in stats) {
   for (categories in stats[day]) {
+    if (categories != "color") {
   stats[day][categories] = 0;
-  }
+  } else {
+  stats[day][categories] = "gray";
+}
+}
   }
    fs.writeFileSync('data/toDo.json', JSON.stringify(data));
    fs.writeFileSync('data/stats.json', JSON.stringify(stats));

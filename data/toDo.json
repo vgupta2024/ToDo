@@ -1,1 +1,23 @@
-{"Monday":{"Thierry":""},"Tuesday":{"Thierry":""},"Wednesday":{"Thierry":""},"Thursday":{"Thierry":""},"Friday":{"Thierry":""},"Saturday":{"Thierry":""},"Sunday":{"Thierry":""}}
+{
+  "Monday": {
+    "Work": ""
+  },
+  "Tuesday": {
+    "Work": ""
+  },
+  "Wednesday": {
+    "Work": ""
+  },
+  "Thursday": {
+    "Work": ""
+  },
+  "Friday": {
+    "Work": ""
+  },
+  "Saturday": {
+    "Work": ""
+  },
+  "Sunday": {
+    "Work": ""
+  }
+}

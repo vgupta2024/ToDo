@@ -3,7 +3,7 @@
 
 <div class="jumbotron">
 <div class="container">
-  <h1 class="display-4"> ToDo List! </h1>
+  <h1 class="display-4"> Weekly Progress! </h1>
   <table class="table">
     <thead>
       <tr bgcolor>
@@ -44,8 +44,8 @@
             <%= spec %>
             </th>
             <% for (let d in categories) { %>
-              <td>
-              <%=categories[d][spec]%>
+            <td>
+            <p style="color: <%= data[d]["color"] %>"> <%=categories[d][spec]%> </p>
             </td>
             <%}}%>
             </tr>
